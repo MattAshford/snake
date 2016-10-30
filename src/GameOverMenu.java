@@ -1,15 +1,12 @@
-
-
-
 import java.awt.image.BufferedImage;
 import java.awt.*;
-import java.net.*;
 
+//-----------------------------------------------------------------------------
 /**
- * This class draws the game over screen onto the canvas.
- * 
+ * This class draws the game over screen onto the canvas. 
  * @author Matt Ashford
  */
+//-----------------------------------------------------------------------------
 public class GameOverMenu extends Canvas
 {
     public Score scoreclass;
@@ -18,9 +15,11 @@ public class GameOverMenu extends Canvas
     {
         scoreclass = new Score();        
     }
+    //-------------------------------------------------------------------------
     /**
      * Draws gameover onto the canvas
      */
+    //-------------------------------------------------------------------------
     public void drawGameOver( Graphics g )
     {
         BufferedImage gameOverImage = new BufferedImage
@@ -35,4 +34,6 @@ public class GameOverMenu extends Canvas
         //gameOverGraphics.drawString( "Score" + scoreclass.score, 50, 60 );        
         g.drawImage( gameOverImage, 0, 0, this );    
     }
+    //-------------------------------------------------------------------------
 }
+//-----------------------------------------------------------------------------

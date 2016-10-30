@@ -1,25 +1,18 @@
-
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.util.LinkedList;
-import java.util.Random;
 import java.awt.*;
 import java.net.*;
-import javax.swing.*;
 
-
+//-----------------------------------------------------------------------------
 /**
- * This class inserts a canvas into the JFrame and paints the GUI onto the canvas.
- * 
- * @author Matt Ashford
+ * This class inserts a canvas into the JFrame and paints the GUI onto the 
+ * canvas. 
  */
+//-----------------------------------------------------------------------------
 public class SnakeCanvas extends Canvas implements Runnable, KeyListener
-{
-      
+{      
+    
     private Thread runThread;
     public boolean inMenu = true;
     public boolean gameOver = false;
@@ -29,10 +22,13 @@ public class SnakeCanvas extends Canvas implements Runnable, KeyListener
     public GameOverMenu gameoverclass;
     public MainMenu menuclass;
     
-    
+    //-------------------------------------------------------------------------    
     /**
-     * This is the paint method that is called everytime the canvas is repainted.
+     * This is the paint method that is called every time the canvas is 
+     * repainted.
      */
+    //-------------------------------------------------------------------------
+    @Override
     public void paint( Graphics g )
     {
         if ( runThread == null )
@@ -68,9 +64,12 @@ public class SnakeCanvas extends Canvas implements Runnable, KeyListener
             gameoverclass.scoreclass.drawScore( g );
         }       
     }
+    //-------------------------------------------------------------------------
     /**
      * Implements double buffer.
      */
+    //-------------------------------------------------------------------------
+    @Override
     public void update( Graphics g )
     {
         Graphics offScreenGraphics;
@@ -88,21 +87,24 @@ public class SnakeCanvas extends Canvas implements Runnable, KeyListener
             e.printStackTrace();
         }
         
-        offScreen = new BufferedImage( d.width, d.height, BufferedImage.TYPE_INT_ARGB );
+        offScreen = new BufferedImage( d.width, d.height, 
+                                       BufferedImage.TYPE_INT_ARGB );
         offScreenGraphics = offScreen.getGraphics();
-        offScreenGraphics.drawImage( background, 0, 0, d.width, d.height, this );
+        offScreenGraphics.drawImage( background, 0, 0, d.width, d.height, this);
         offScreenGraphics.setColor( this.getForeground() );
         paint( offScreenGraphics );
         
         //flip
         g.drawImage( offScreen, 0, 0, this );        
     }
+    //-------------------------------------------------------------------------
     /**
-     * Moves the snake by adding the next coordinate point to the snake linkedlist
-     * and removing the last coordinate point from the linked list. Also includes
-     * statements to detect if the snake has gone out of bounds, hit an apple, or run
-     * into itself.
+     * Moves the snake by adding the next coordinate point to the snake 
+     * linkedlist and removing the last coordinate point from the linked list. 
+     * Also includes statements to detect if the snake has gone out of bounds, 
+     * hit an apple, or run into itself.
      */
+    //-------------------------------------------------------------------------
    private void move()
     {
         if ( snakeclass.direction == Globals.NO_DIRECTION )
@@ -127,7 +129,7 @@ public class SnakeCanvas extends Canvas implements Runnable, KeyListener
             nextPoint = new Point( head.x + 1, head.y );
             break;
         }        
-        //if ( snakeclass.direction != Globals.NO_DIRECTION )
+        if ( snakeclass.direction != Globals.NO_DIRECTION )
             snakeclass.snake.remove( snakeclass.snake.peekLast() );
         
         if ( nextPoint.equals( appleclass.apple ) )
@@ -165,7 +167,8 @@ public class SnakeCanvas extends Canvas implements Runnable, KeyListener
         }        
         // if we get to this point then were still good.
         snakeclass.snake.push( nextPoint );        
-    }  
+    }
+    //-------------------------------------------------------------------------
     @Override
     public void run() 
     {
@@ -186,16 +189,17 @@ public class SnakeCanvas extends Canvas implements Runnable, KeyListener
             }
         }   
     }    
-    //----------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
     @Override
     public void keyReleased( KeyEvent arg0 ){}  
-    //----------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
     @Override
     public void keyTyped( KeyEvent arg0) {}
-    //----------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
     /**
      * Detects and handles user input
      */
+    //-------------------------------------------------------------------------
     @Override
     public void keyPressed( KeyEvent e ) 
     {
@@ -240,7 +244,7 @@ public class SnakeCanvas extends Canvas implements Runnable, KeyListener
             }
             break;
         }      
-    } 
-
+    }
+    //-------------------------------------------------------------------------
 }
-//----------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------

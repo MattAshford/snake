@@ -1,24 +1,25 @@
-
-
-import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import java.util.Random;
 import java.awt.*;
 import java.net.*;
 
+//-----------------------------------------------------------------------------
 /**
- * This class generates a random point to place the apple on the canvas and draws
- * the apple onto the canvas.
+ * This class generates a random point to place the apple on the canvas and 
+ * draws the apple onto the canvas.
  * 
  * @author Matt Ashford
  */
+//-----------------------------------------------------------------------------
 public class Apple extends Canvas
 {
     public Point apple;
     
+    //-------------------------------------------------------------------------
     /**
      * Draws apple on canvas
      */
+    //-------------------------------------------------------------------------
     public void drawApple( Graphics g )
     {
         Image appleIcon = null;
@@ -35,9 +36,11 @@ public class Apple extends Canvas
         g.drawImage( appleIcon, apple.x * Globals.POINT_WIDTH, apple.y * Globals.POINT_HEIGHT, Globals.POINT_WIDTH, Globals.POINT_HEIGHT, this );
         g.setColor( Color.BLACK );        
     }
+    //-------------------------------------------------------------------------
     /**
      * generates a random point to place the apple
      */
+    //-------------------------------------------------------------------------
     public void placeApple( LinkedList snake )
     {
         Random rand = new Random();
@@ -58,4 +61,6 @@ public class Apple extends Canvas
         }            
         apple = randPoint;
     }
+    //-------------------------------------------------------------------------
 }
+//-----------------------------------------------------------------------------

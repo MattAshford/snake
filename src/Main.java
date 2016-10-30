@@ -1,13 +1,8 @@
-import java.awt.*;
 import javax.swing.JFrame;
 
+//-----------------------------------------------------------------------------
 public class  Main
 {
-
-    /**
-     *
-     * @param args
-     */
     public static void main(String[] args)
     {
         JFrame frame = new JFrame("Snake");        
@@ -21,6 +16,6 @@ public class  Main
         frame.add( game );
         frame.setVisible( true );
         frame.setFocusable( true );
-    }
-    
+    }    
 }
+//-----------------------------------------------------------------------------
