@@ -1,5 +1,4 @@
 # My Snake Game
-
 A game of snake I made for Java class at uni.
 
 ## Screenshot
